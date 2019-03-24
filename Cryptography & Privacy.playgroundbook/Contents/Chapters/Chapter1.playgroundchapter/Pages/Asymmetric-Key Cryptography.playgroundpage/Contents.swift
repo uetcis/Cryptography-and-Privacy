@@ -36,6 +36,8 @@ print(String(data: decrypted, encoding: .utf8)!)
 Encrypting/Decrypting using asymmetric-key cryptography can be **way slower** than symmetric-key cryptography, and therefore is **not suitable for large files**.
 */
 
+//#-code-completion(everything, hide)
+//#-code-completion(identifier, show, textData, publicKey, privateKey, encryptedData, .)
 // Encrypt the text using a designated public key
 func encrypt(text: String, usingPublicKey publicKey: SecKey) -> Data {
 	let textData = text.data(using: .utf8)!

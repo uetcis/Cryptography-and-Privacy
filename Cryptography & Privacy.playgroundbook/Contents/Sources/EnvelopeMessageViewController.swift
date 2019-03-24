@@ -25,18 +25,27 @@ public class EnvelopeMessageViewController: UIViewController, PlaygroundLiveView
 		}
 		set {
 			envelopeView.deliveryStatus = newValue
+			if let viewer = newValue?.viewer {
+				label.text = "Viewer: " + viewer
+			}
 		}
 	}
 	
 	let envelopeView = EnvelopeMessageView()
+	let label = UILabel()
 	let backgroundView = UIImageView(image: UIImage(named: "Background"))
 	
 	public override func viewDidLoad() {
 		super.viewDidLoad()
 		view.addSubview(backgroundView)
 		view.addSubview(envelopeView)
+		view.addSubview(label)
+		label.textColor = .white
+		label.font = UIFont.systemFont(ofSize: 32, weight: .medium)
 		envelopeView.backgroundColor = .clear
+		label.backgroundColor = .clear
 		backgroundView.backgroundColor = #colorLiteral(red: 0.1999745071, green: 0.2000150084, blue: 0.1999689043, alpha: 1)
+		label.translatesAutoresizingMaskIntoConstraints = false
 		envelopeView.translatesAutoresizingMaskIntoConstraints = false
 		backgroundView.translatesAutoresizingMaskIntoConstraints = false
 		backgroundView.contentMode = .scaleAspectFill
@@ -104,6 +113,31 @@ public class EnvelopeMessageViewController: UIViewController, PlaygroundLiveView
 							   constant: 0)
 		]
 		view.addConstraints(backgroundConstraints)
+		
+		let labelConstraints = [
+			NSLayoutConstraint(item: label,
+							   attribute: .centerX,
+							   relatedBy: .equal,
+							   toItem: view,
+							   attribute: .centerX,
+							   multiplier: 1,
+							   constant: 0),
+			NSLayoutConstraint(item: label,
+							   attribute: .bottom,
+							   relatedBy: .equal,
+							   toItem: envelopeView,
+							   attribute: .top,
+							   multiplier: 1,
+							   constant: 8),
+			NSLayoutConstraint(item: label,
+							   attribute: .top,
+							   relatedBy: .greaterThanOrEqual,
+							   toItem: view.safeAreaLayoutGuide,
+							   attribute: .top,
+							   multiplier: 1,
+							   constant: 0)
+		]
+		view.addConstraints(labelConstraints)
 	}
 	
 }

@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>MaximumSupportedExecutionSpeed</key>
+	<string>Fastest</string>
 	<key>Name</key>
 	<string>Practice: Secure Chat</string>
 	<key>LiveViewEdgeToEdge</key>

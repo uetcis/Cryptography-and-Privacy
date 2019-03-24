@@ -7,6 +7,11 @@ let testChatData = [
 "Hi!"
 ]
 var chatHistory = [String]()
+fileprivate var executionMode = PlaygroundPage.current.executionMode
+NotificationCenter.default.addObserver(forName: .playgroundPageExecutionModeDidChange, object: PlaygroundPage.current, queue: .main) { _ in
+	executionMode = PlaygroundPage.current.executionMode
+}
+
 //#-end-hidden-code
 /*:
 # Cryptography & Privacy in Practice: Secure Chat
@@ -27,6 +32,15 @@ public class Person: Client {
 	private var sharedKey: Data!
 	
 	public func requestSecureChat(with receiver: Client) {
+		//#-hidden-code
+		let status = DeliveryStatus(senderName: name,
+									receiverName: receiver.name,
+									viewer: name,
+									content: .requestSecureChat(publicKey: ownKeyPair.publicKey))
+		showStatus(status)
+		//#-end-hidden-code
+		//#-code-completion(everything, hide)
+		//#-code-completion(identifier, show, ownKeyPair, publicKey, privateKey, sharedKey, .)
 		deliver(message: Message(sender: self, receiver: receiver,
 								 payload: Message.Payload(
 									content: .requestSecureChat(publicKey: /*#-editable-code*/<#T##Public Key##SecKey##>/*#-end-editable-code*/))!))
@@ -58,6 +72,13 @@ public class Person: Client {
 			chatHistory += [text]
 			//#-end-hidden-code
 		}
+		//#-hidden-code
+		let status = DeliveryStatus(senderName: message.sender.name,
+									receiverName: message.receiver.name,
+									viewer: name,
+									content: content)
+		showStatus(status)
+		//#-end-hidden-code
 	}
 	
 	//#-hidden-code
@@ -65,16 +86,35 @@ public class Person: Client {
 		let payload = Message.Payload(content: .plain(text: text)) { plainData in
 			return encrypt(contentData: plainData, keyData: self.sharedKey)
 		}
+		let status = DeliveryStatus(senderName: name,
+									receiverName: receiver.name,
+									viewer: name,
+									content: .plain(text: text))
+		showStatus(status)
 		deliver(message: Message(sender: self, receiver: receiver, payload: payload!))
 	}
 	
 	public func showDelivery(for message: Message) {
 		let status = DeliveryStatus(senderName: message.sender.name,
 									receiverName: message.receiver.name,
+									viewer: "Man in the Middle",
 									content: message.payload.getContent(decryptor: nil))
+		showStatus(status)
+	}
+	
+	private func showStatus(_ status: DeliveryStatus) {
 		let remoteView = getRemoteView()
 		remoteView.send(.data(status.toJSONData()!))
-		sleep(2)
+		let interval: UInt32
+		switch executionMode {
+		case .runFaster:
+			interval = 1
+		case .runFastest:
+			interval = 0
+		default:
+			interval = 2
+		}
+		sleep(interval)
 	}
 	
 	public init(name: String) {
@@ -140,7 +180,7 @@ public class Person: Client {
 		case .confirmSecureChat(encryptedSharedKeyData: let keyData):
 			sharedKey = keyData
 		case .plain(text: let text):
-			print("\(name) received: \"\(text)\" from \(message.sender.name)")
+			break
 		}
 	}
 	

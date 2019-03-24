@@ -13,8 +13,8 @@ public protocol Client {
 public extension Client {
 	
 	public func deliver(message: Message) {
-		message.receiver.didReceive(message: message)
 		showDelivery(for: message)
+		message.receiver.didReceive(message: message)
 	}
 	
 }
@@ -207,11 +207,13 @@ public class Person: Client {
 public struct DeliveryStatus: Codable {
 	public let senderName: String
 	public let receiverName: String
+	public let viewer: String
 	public let content: Message.Content?
 	
-	public init(senderName: String, receiverName: String, content: Message.Content?) {
+	public init(senderName: String, receiverName: String, viewer: String, content: Message.Content?) {
 		self.senderName = senderName
 		self.receiverName = receiverName
+		self.viewer = viewer
 		self.content = content
 	}
 }

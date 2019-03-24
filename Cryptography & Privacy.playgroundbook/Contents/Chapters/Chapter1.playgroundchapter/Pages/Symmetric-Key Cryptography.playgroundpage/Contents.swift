@@ -29,6 +29,8 @@ print(String(data: decrypted, encoding: .utf8)!)
 ```
 */
 
+//#-code-completion(everything, hide)
+//#-code-completion(identifier, show, dataToBeEncrypted, key, encryptedData, .)
 // Encrypt the text using a designated password
 func encrypt(text: String, using password: String) -> Data {
 	let dataToBeEncrypted = text.data(using: .utf8)!
