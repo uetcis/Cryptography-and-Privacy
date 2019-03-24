@@ -5,6 +5,8 @@
 //  Abstract:
 //  The Swift file containing the source code edited by the user of this playground book.
 //
+import Foundation
+import PlaygroundSupport
 //#-end-hidden-code
 /*:
 # Symmetric-Key Cryptography
