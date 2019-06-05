@@ -1,4 +1,5 @@
 # Cryptography & Privacy
+[Open in Swift Playgrounds](https://developer.apple.com/ul/sp0?url=https://captainyukinoshitahachiman.github.io/Cryptography-and-Privacy/feed.json)
 ## WWDC19 Swift Playgrounds 
 > Tell us about the features and technologies you used in your Swift playground.
 
