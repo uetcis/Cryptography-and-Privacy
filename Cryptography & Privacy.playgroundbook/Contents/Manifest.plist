@@ -9,7 +9,7 @@
 		<string>Chapter1.playgroundchapter</string>
 	</array>
 	<key>ContentIdentifier</key>
-	<string>tech.tcwq.cryptography-and-privacy.Cryptography---Privacy</string>
+	<string>io.github.captainyukinoshitahachiman.cryptographyandprivacy</string>
 	<key>ContentVersion</key>
 	<string>1.0</string>
 	<key>DeploymentTarget</key>
