@@ -1,0 +1,32 @@
+{
+    "documents": [
+        {
+            "previewImageURLs": [],
+            "bannerImageURL": "CryptographyAndPrivacy/Cover.png",
+            "thumbnailURL": "CryptographyAndPrivacy/Cover.png",
+            "overviewSubtitle": "Learn Cryptography and see how you can apply that for your privacy.",
+            "description": "Learn Cryptography and see how you can apply that for your privacy.",
+            "publishedDate": "2019-06-05T12:00:00+00:00",
+            "url": "https://captainyukinoshitahachiman.github.io/Cryptography-and-Privacy/CryptographyAndPrivacy/CryptographyAndPrivacy.playgroundbook.zip",
+            "additionalInformation": [
+                {
+                    "name": "Publisher:",
+                    "value": "CaptainYukinoshitaHachiman"
+                },
+                {
+                    "name": "Version:",
+                    "value": "1.0"
+                }
+            ],
+            "title": "Cryptography & Privacy",
+            "contentVersion": "1.0",
+            "lastUpdatedDate": "2019-06-05T12:00:00+00:00",
+            "contentIdentifier": "io.github.captainyukinoshitahachiman.CryptographyAndPrivacy"
+        }
+      ],
+    "publisherName": "CaptainYukinoshitaHachiman",
+    "title": "Cryptography & Privacy",
+    "formatVersion": "1.0",
+    "feedIdentifier": "io.github.captainyukinoshitahachiman",
+    "contactURL": "mailto:captainyukinoshitahachiman@protonmail.com"
+}
